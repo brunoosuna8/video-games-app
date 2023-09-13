@@ -1,0 +1,52 @@
+npm init -y
+
+npm i express --save
+
+
+npm i sequelize -- save
+
+npm i pg pg-hstore --save : para poder conectar a la db
+npm i nodemon : guardar info cuando se detectan cambios en los rachivos
+npm i doteenv --save cargar varaiables de entros
+npm i cors : permitir llegar peticiones des otro servidor
+
+
+
+
+
+
+
+
+
+const express = require('express');
+const cors = require('cors');
+const {fetchData} = require('../client/src/fetchData');
+
+const app = express();
+
+// Habilitar CORS
+app.use(cors());
+
+app.get('/', async (req, res)  => {
+  const data = await fetchData()
+  return res.status(200).json(data)
+});
+
+
+
+
+
+
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor iniciado en el puerto ${PORT}`);
+});
+
+
+
+
+
+const games = await fetch('http://localhost:5000/')
+    const gamesData = await games.json()
